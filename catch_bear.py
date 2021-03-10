@@ -10,13 +10,11 @@ def mouseclick(params):
       win.title(s)
       #messagebox.showinfo(title="Поймай медведя", message=s)
       r = 5
-      canv.create_oval(x-r,y-r,x+r,y+r,width=1)
-      
+      canv.create_oval(x-r,y-r,x+r,y+r,width=1)     
       if abs(x - bearX) < 10 and abs(y - bearY) < 10:
-            bear=tk.PhotoImage("bear.jpg")
-            img=canv.create_image(0, 0, image=bear)            
-            #messagebox.showinfo("Поймай медведя", "поймал!")
-            
+            img = canv.create_image(bearX, bearY, image=bear)            
+            messagebox.showinfo("Поймай медведя", "поймал!")
+            canv.clear(img)
       else:
             s = ""
             if y < bearY:
@@ -36,7 +34,8 @@ win = tk.Tk()
 win.geometry()
 canv = tk.Canvas(win, width=600, height=400, bg='green')
 canv.pack()
+bear=tk.PhotoImage(file="bear.png")
 
 
-win.bind("<1>",mouseclick)
+win.bind("<1>", mouseclick)
 win.mainloop()
